@@ -41,7 +41,40 @@ public:
     }
 };
 ```
+## 76-Minimum Window Substring
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+**Example:**
+**Input: S** = "ADOBECODEBANC", **T** = "ABC"
+**Output:** "BANC"
+最小窗口子串
+用哈希表来实现，哈希表来统计T串中字母的个数，遍历S串，对于S中每个遍历到的字母，都在哈希表中的映射值减1，若减1后映射值仍大于等于0，说明当前遍历到的字母是T串中的字母，使用计数器cnt，使其自增1。当cnt和T串字母个数相等时，说明此时窗口已经包含了T串中的所有字母，此时更新一个minlen和ans,这里minlen是用来记录出现过的包含T串所有字母的最短子串的长度，ans是这个最短子串。最后需要收缩左边界，由于遍历的时候对映射值减1 了，所以要把1加回来。
+```
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        string ans="";
+        unordered_map<char,int> lettercnt;
+        int left=0,cnt=0,minlen=INT_MAX;
+        for(char c:t)
+            lettercnt[c]++;
+        for(int i=0;i<s.size();++i){
+            if(--lettercnt[s[i]]>=0)
+                cnt++;
+            while(cnt==t.size()){
+                if(minlen>i-left+1){
+                    minlen=i-left+1;
+                    ans=s.substr(left,minlen);
+                }
+                if(++lettercnt[s[left]]>0)
+                    --cnt;
+                ++left;
+            }
+        }
+        return ans;
+    }
+};
+```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MzMxNTE4NF19
+eyJoaXN0b3J5IjpbLTg3NjcwODA2NywtMTczMzE1MTg0XX0=
 -->
