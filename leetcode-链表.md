@@ -6,7 +6,7 @@
 **Explanation:**
 rotate 1 steps to the right: 5->1->2->3->4->NULL
 rotate 2 steps to the right: 4->5->1->2->3->NULL
-#### 解题
+解：
 第一种方法是使用快慢指针，快指针先走k步，然后两个指针一起走，当快指针走到末尾时，慢指针的下一个位置就是新的顺序的头结点，这样就可以旋转链表了。
 ```
 class Solution{
@@ -208,6 +208,8 @@ public:
     }
 };
 ```
+以上yi'shu'cu
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzNTA4NDYwMCwtNjAyODE4NjIwXX0=
+eyJoaXN0b3J5IjpbLTg2OTY0OTA3MSwtOTM1MDg0NjAwLC02MD
+I4MTg2MjBdfQ==
 -->
