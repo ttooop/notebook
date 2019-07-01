@@ -114,7 +114,39 @@ public:
     }
 };
 ```
-
+### 90-SubsetsⅡ
+求子集，但是所得的集合中不能有重复的
+**Example:**
+**Input:** [1,2,2]
+**Output:**
+[
+  [2], [1],[1,2,2],  [2,2], [1,2], []
+]
+解：
+先排序！然后通过循环跳过重复的
+```
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> out;
+        sort(nums.begin(),nums.end());
+        helper(0,nums,out,ans);
+        return ans;
+    }
+    void helper(int start,vector<int>& nums,vector<int>& out,vector<vector<int>>& ans){
+        ans.push_back(out);
+        for(int i=start;i<nums.size();++i){
+            out.push_back(nums[i]);
+            helper(i+1,nums,out,ans);
+            out.pop_back();
+            while(i+1<nums.size()&&nums[i+1]==nums[i])
+                ++i;
+        }
+    }
+};
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDc3MjM1NTRdfQ==
+eyJoaXN0b3J5IjpbLTExNDc4MjI5NDMsLTE4NDc3MjM1NTRdfQ
+==
 -->
