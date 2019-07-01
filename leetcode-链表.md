@@ -69,6 +69,113 @@ public:
     }
 };
 ```
+### 83-Remove Duplicates from Sorted List
+删除链表中重复数字，保证每个数字只出现一次
+**Example 2:**
+**Input:** 1->1->2->3->3
+**Output:** 1->2->3
+解：
+不用创建新链表，直接通过一次遍历，进行链表next的转换即可
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *cur=head;
+        while(cur){
+            while(cur->next&&cur->next->val==cur->val){
+                cur->next=cur->next->next;
+            }
+            cur=cur->next;
+        }
+        return head;
+    }
+};
+```
+### 83-Remove Duplicates from Sorted List II
+将所有重复的数字都删除掉，只留下不重复的数字。
+**Example 1:**
+**Input:** 1->2->3->3->4->4->5
+**Output:** 1->2->5
+解：
+需要通过创建新的链表来改变pre->next的指向，即直接跳过重复数字指向后面的数字。
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head||!head->next)
+            return head;
+        ListNode *dummy=new ListNode(-1),*pre=dummy;
+        dummy->next=head;
+        while(pre->next){
+            ListNode *cur=pre->next;
+            while(cur->next&&cur->val==cur->next->val){
+                cur=cur->next;
+            }
+            if(cur!=pre->next)
+                pre->next=cur->next;
+            else
+                pre=pre->next;
+        }
+        return dummy->next;
+    }
+};
+```
+### 86-Partition List
+将链表中小于x的移到前面，其余的按顺序不变在后面。
+**Example:**
+**Input:** head = 1->4->3->2->5->2, _x_ = 3
+**Output:** 1->2->2->4->3->5
+解：
+通过创建两个新的链表，一个newdummy通过p指针实现小于x的数的先链接，剩下的按dummy中的顺序更改指向，最后将p和dummy连起来即可。
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        if(!head)
+            return NULL;
+        ListNode *dummy=new ListNode(-1),*cur=dummy;
+        dummy->next=head;
+        ListNode *newdummy=new ListNode(-1),*p=newdummy;
+        while(cur->next){
+            if(cur->next->val<x){
+                p->next=cur->next;
+                p=p->next;
+                cur->next=cur->next->next;
+                p->next=NULL;
+            }else{
+                cur=cur->next;
+            }
+        }
+        p->next=dummy->next;
+        return newdummy->next;
+    }
+};
+```
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDM4NjI3MjQ1XX0=
+eyJoaXN0b3J5IjpbLTYwMjgxODYyMCw0Mzg2MjcyNDVdfQ==
 -->
