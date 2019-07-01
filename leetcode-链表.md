@@ -175,7 +175,39 @@ public:
     }
 };
 ```
-
+### 92-Reverse Linked List Ⅱ
+将链表m到n之间的数字翻转
+**Note:** 1 ≤  _m_  ≤  _n_  ≤ length of list.
+**Example:**
+**Input:** 1->2->3->4->5->NULL, _m_ = 2, _n_ = 4
+**Output:** 1->4->3->2->5->NULL
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        ListNode* dummy=new ListNode(-1),*pre=dummy;
+        dummy->next=head;
+        for(int i=0;i<m-1;++i)
+            pre=pre->next;
+        ListNode *cur=pre->next;
+        for(int i=m;i<n;++i){
+            ListNode *t=cur->next;
+            cur->next=t->next;
+            t->next=pre->next;
+            pre->next=t;
+        }
+        return dummy->next;
+    }
+};
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwMjgxODYyMF19
+eyJoaXN0b3J5IjpbLTkzNTA4NDYwMCwtNjAyODE4NjIwXX0=
 -->
