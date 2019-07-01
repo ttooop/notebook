@@ -115,6 +115,7 @@ public:
 ### 98-Validate Binary Search Tree
 判断二叉树是否是二叉搜索树，即左子结点的数都小于根节点，右子节点的都大于根节点
 **Example 2:**
+
     5
    / \
   1   4
@@ -160,5 +161,6 @@ public:
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzE3NzU3NjZdfQ==
+eyJoaXN0b3J5IjpbLTE0NTI1NTQ5ODQsLTE4NzE3NzU3NjZdfQ
+==
 -->
