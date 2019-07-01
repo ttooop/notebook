@@ -167,6 +167,29 @@ public:
 
 以上已输出
 
+### 99-Recover Binary Search Tree
+还原一个二叉搜索树：
+**Example 2:**
+
+**Input:** [3,1,4,null,null,2]
+```
+  3
+ / \
+1   4
+   /
+  2
+```
+**Output:** [2,1,4,null,null,3]
+```
+  2
+ / \
+1   4
+   /
+  3
+  ```
+  解：
+ 建立两个动态数组，一个存放通过中序遍历得到的二叉树结点值，另一个用于存储这些jie'di
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyMjIzOTE5OCwtMTg3MTc3NTc2Nl19
+eyJoaXN0b3J5IjpbLTE3NDQ4MDk3ODksLTE4NzE3NzU3NjZdfQ
+==
 -->
