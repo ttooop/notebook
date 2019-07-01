@@ -3,11 +3,13 @@
 中序遍历二叉数
 **Example:**
 **Input:** [1,null,2,3]
+```
    1
     \
      2
     /
    3
+   ```
 **Output:** [1,3,2]
 解：
 递归方法
@@ -46,11 +48,13 @@ public:
 **Input:** 3
 **Output:** 5
 **Explanation:** Given _n_ = 3, there are a total of 5 unique BST's:
+```
    1         3     3      2      1
     \       /     /      / \      \
      3     2     1      1   3      2
     /     /       \                 \
    2     1         2                 3
+   ```
    解：
    卡塔兰树——排列规律
 $$
@@ -115,12 +119,13 @@ public:
 ### 98-Validate Binary Search Tree
 判断二叉树是否是二叉搜索树，即左子结点的数都小于根节点，右子节点的都大于根节点
 **Example 2:**
-
+```
     5
    / \
   1   4
      / \
     3   6
+```
 **Input:** [5,1,4,null,null,3,6]
 **Output:** false
 **Explanation:** The root node's value is 5 but its right child's value is 4.
@@ -161,6 +166,5 @@ public:
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NTI1NTQ5ODQsLTE4NzE3NzU3NjZdfQ
-==
+eyJoaXN0b3J5IjpbNzE4ODA5NjM0LC0xODcxNzc1NzY2XX0=
 -->
