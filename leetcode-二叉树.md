@@ -188,8 +188,42 @@ public:
   3
   ```
   解：
- 建立两个动态数组，一个存放通过中序遍历得到的二叉树结点值，另一个用于存储这些jie'di
+ 建立两个动态数组，一个存放通过中序遍历得到的二叉树结点值，另一个用于存储这些结点
+ 然后将vals中的值进行排序，最后赋值给结点中的值，使其满足二叉搜索树
+ ```
+ /**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void recoverTree(TreeNode* root) {
+        if(!root)
+            return ;
+        vector<int> vals;
+        vector<TreeNode*> list;
+        inorder(root,list,vals);
+        sort(vals.begin(),vals.end());
+        for(int i=0;i<vals.size();++i){
+            list[i]->val=vals[i];
+        }
+    }
+    void inorder(TreeNode* root,vector<TreeNode*>& list,vector<int>& vals){
+        if(!root)
+            return ;
+        inorder(root->left,list,vals);
+        list.push_back(root);
+        vals.push_back(root->val);
+        inorder(root->right,list,vals);
+    }
+};
+ ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDQ4MDk3ODksLTE4NzE3NzU3NjZdfQ
-==
+eyJoaXN0b3J5IjpbMTM4OTc0MjQ5OCwtMTc0NDgwOTc4OSwtMT
+g3MTc3NTc2Nl19
 -->
