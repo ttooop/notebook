@@ -209,8 +209,72 @@ public:
 };
 ```
 以上已输出
+### Linked List Cycle
+给定链表，确定链表中是否存在环，存在就返回true，不存在就返回false
+解决：：
+快慢指针
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* fast=head,*slow=head;
+        while(fast&&fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow)
+                return true;
+        }
+        return false;
+    }
+};
+```
 
+### 142-Linked List Cycle Ⅱ
+给定一个链表，找到链表中环的起始位置，若不存在环，则返回no cycle
+思路：
+也是使用快慢指针，到快慢指针相遇的时候停止，然后头指针跟慢指针一起走，再次相遇就是环的起点
+解释：
+因为当快慢指针相遇时，快指针比慢指针多走了一圈，那么，链表头到环起点的距离加上环起点到相遇点的距离=环一圈的距离
+现在重新开始走的话，head运行到环起点和相遇点到环起点的距离也是相等的，相当于他们同时减掉了环的起点到他们相遇点的距离。
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* fast=head,*slow=head;
+        while(fast&&fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow)
+                break;
+        }
+        if(!fast||!fast->next)
+            return NULL;
+        slow=head;
+        while(slow!=fast){
+            fast=fast->next;
+            slow=slow->next;
+        }
+        return fast;
+    }
+};
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzczNjY3ODYyLC05MzUwODQ2MDAsLTYwMj
-gxODYyMF19
+eyJoaXN0b3J5IjpbLTc3MTA2MTI1NywtOTM1MDg0NjAwLC02MD
+I4MTg2MjBdfQ==
 -->
