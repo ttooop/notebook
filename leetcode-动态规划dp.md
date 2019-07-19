@@ -84,7 +84,39 @@ public:
 ```
 
 以上一输出
+
+### 647-Palindromic Substrings
+回文子串
+```
+**Example 2:**
+**Input:** "aaa"
+**Output:** 6
+**Explanation:** Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+```
+解决：
+动态规划
+dp[i][j]表示子串i-j是否是回文串，i从n-1开始递减，j从i开始递增：
+dp[i][j]=(s[i]==s[j])&&(j-i<=2||dp[i+1][j-1])
+```
+class Solution {
+public:
+    int countSubstrings(string s) {
+        int n=s.size(),ans=0;
+        vector<vector<bool>> dp(n,vector<bool>(n,false));
+        for(int i=n-1;i>=0;--i){
+            for(int j=i;j<n;++j){
+                dp[i][j]=(s[i]==s[j])&&(j-i<=2||dp[i+1][j-1]);
+                if(dp[i][j])
+                    ++ans;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNjc1NjI1NjcsLTEwMzIyMTQyMTEsLT
-g3MzIwMTMwOF19
+eyJoaXN0b3J5IjpbNDU4NDY5NDExLC0xMDMyMjE0MjExLC04Nz
+MyMDEzMDhdfQ==
 -->
