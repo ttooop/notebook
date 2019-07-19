@@ -148,6 +148,48 @@ public:
 ```
 
 以上已输出
+### 200. Number of Islands
+```
+**Example 2:**
+**Input:**
+11000
+11000
+00100
+00011
+**Output:** 3
+```
+解决：：DFS
+```
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        //DFS
+        if(grid.empty()||grid[0].empty())
+            return 0;
+        int m=grid.size(),n=grid[0].size(),ans=0;
+        vector<vector<bool>> visited(m,vector<bool>(n));
+        for(int i=0;i<m;++i){
+            for(int j=0;j<n;++j){
+                if(grid[i][j]=='0'||visited[i][j])
+                    continue;
+                helper(grid,visited,i,j);
+                ++ans;
+            }
+        }
+        return ans;
+    }
+    void helper(vector<vector<char>>& grid,vector<vector<bool>>& visited,int i,int j){
+        if(i<0||i>=grid.size()||j<0||j>=grid[0].size()||grid[i][j]=='0'||visited[i][j])
+            return ;
+        visited[i][j]=true;
+        helper(grid,visited,i-1,j);
+        helper(grid,visited,i,j-1);
+        helper(grid,visited,i+1,j);
+        helper(grid,visited,i,j+1);
+    }
+};
+```
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIzMzkxMzUwNywtMTg0NzcyMzU1NF19
+eyJoaXN0b3J5IjpbLTY3MjUyMzUwNSwtMTg0NzcyMzU1NF19
 -->
