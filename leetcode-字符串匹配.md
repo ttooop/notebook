@@ -107,6 +107,55 @@ public:
 
 以上一输出
 
+### 301. Remove Invalid Parentheses
+从给定字符串中移除一个字符串，使剩下的字符串中的内容符合括号匹配
+**Example 2:**
+**Input:** "(a)())()"
+**Output:** ["(a)()()", "(a())()"]
+
+#### 方法一：：BFS
+使用队列和集合
+```
+class Solution {
+public:
+    vector<string> removeInvalidParentheses(string s) {
+        vector<string> res;
+        unordered_set<string> visited{{s}};
+        queue<string> q{{s}};
+        bool found=false;
+        while(!q.empty()){
+            string t=q.front();q.pop();
+            if(isvalid(t)){
+                res.push_back(t);
+                found=true;
+            }
+            if(found)
+                continue;
+            for(int i=0;i<t.size();++i){
+                if(t[i]!='('&&t[i]!=')')
+                    continue;//当遇到非括号时直接跳过即可
+                string str=t.substr(0,i)+t.substr(i+1);//把第i个元素去掉，然后加入到队列q和集合中（使用集合是为了不出现重复的结果）
+                if(!visited.count(str)){
+                    q.push(str);
+                    visited.insert(str);
+                }
+            }
+        }
+        return res;
+    }
+    bool isvalid(string t){
+        int cnt=0;
+        for(int i=0;i<t.size();++i){
+            if(t[i]=='(')
+                ++cnt;
+            else if(t[i]==')'&&--cnt<0)
+                return false;
+        }
+        return cnt==0;
+    }
+};
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NzA4ODI0NDgsMTI4MzYyOTU4OF19
+eyJoaXN0b3J5IjpbMjAwODYwNjYwOCwtMTk3MDg4MjQ0OCwxMj
+gzNjI5NTg4XX0=
 -->
